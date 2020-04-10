@@ -17,6 +17,7 @@ fn main() {
     _loop();
     _while();
     arr_loop();
+    test();
 }
 
 fn another_fun(x: i32, y: char){
@@ -89,5 +90,20 @@ fn arr_loop(){
 
     for number in (1..4).rev() {
         println!("{}!", number);
+    }
+}
+
+fn test(){
+    let arr2 = [
+        [1,2,3,4],
+        [1,2,3,4]
+    ];
+
+    for (_row, &arr) in arr2.iter().enumerate() {
+        for (_col, &_item) in arr.iter().enumerate() {
+            println!("[{}, {}] is {}", _row, _col, _item);
+            break;
+        }
+        break;
     }
 }
