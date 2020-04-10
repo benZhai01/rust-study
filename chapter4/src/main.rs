@@ -150,6 +150,6 @@ fn test11(){
     let slice: &[i32] = &a[..2];
 
     //let mut b = [1,2,3,4];
-    //let slice = b[1..2]; error must have a specified size on compilation time.
+    //let slice = b[1..2]; error, must have a specified size at compile time.
 }
 
