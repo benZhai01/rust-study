@@ -1,7 +1,13 @@
+use std::collections::HashMap;
+
 fn main() {
     test1();
     test2();
     test3();
+    test4();
+    test5();
+    test6();
+    test7();
 }
 
 fn test1(){
@@ -50,4 +56,43 @@ fn test3(){
         println!("{}", i);
     }
 
+}
+
+fn test4(){
+    let mut s = String::from("foo");
+    s.push(' ');
+    s.push_str("bar");
+
+    s += " hello";
+    print!("{}", s);
+}
+
+fn test5(){
+    let s1 = String::from("tic");
+    let s2 = String::from("tac");
+    let s3 = String::from("toe");
+
+    let s = s1 + &s2 + &s3;
+    println!("{}", s);
+}
+
+fn test6(){
+    let mut hashmap: HashMap<String, i32> = HashMap::new();
+    hashmap.insert(String::from("Blue"), 10);
+    hashmap.insert(String::from("Yellow"), 30);
+    println!("{:#?}", hashmap);
+
+    *hashmap.entry(String::from("Blue")).or_insert(20) *= 2;
+    println!("{:#?}", hashmap);
+}
+
+fn test7(){
+    let words = "hello world wonderful world";
+    let mut map: HashMap<&str, i32> = HashMap::new();
+    for word in words.split_whitespace() {
+        let v: &mut i32 = map.entry(word).or_insert(0);
+        *v += 1;
+        //*map.entry(word).or_insert(0) += 1;
+    }
+    println!("{:#?}", map);
 }
