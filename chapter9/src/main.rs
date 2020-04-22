@@ -3,7 +3,7 @@ use std::io::ErrorKind;
 
 fn main() {
     test1();
-    test2();
+    test3();
 }
 
 fn test1(){
@@ -22,4 +22,15 @@ fn test2(){
             other_error => panic!("Problem opening the file: {:?}", other_error)
         },
     };
+}
+fn test3(){
+    let f = File::open("hello.txt").unwrap_or_else(|error| {
+        if error.kind() == ErrorKind::NotFound {
+            File::create("hello.txt").unwrap_or_else(|error| {
+                panic!("Problem creating the file: {:?}", error);
+            })
+        } else {
+            panic!("Problem opening the file: {:?}", error);
+        }
+    });
 }
